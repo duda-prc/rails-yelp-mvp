@@ -1,0 +1,17 @@
+<div class="container mt-4">
+  <h1><%= @restaurant.name  %></h1>
+
+  <%= link_to edit_restaurant_path, class:"btn btn-secondary mb-4" do %>
+    <div class="btn btn-secondary d-flex align-items-center p-0">
+      <i class="fa-solid fa-pen-to-square"></i>
+      <p class="m-0 py-0 px-1">Edit</p>
+    </div>
+  <% end %>
+
+  <div class="card mb-4 p-2">
+    <p>Category : <%= @restaurant.category  %></p>
+    <p>Address : <%= @restaurant.address  %></p>
+  </div>
+
+  <%= link_to 'Back to restaurants', restaurants_path, class:'btn btn-primary' %>
+</div>
