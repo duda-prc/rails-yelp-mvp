@@ -13,5 +13,13 @@
     <p>Address : <%= @restaurant.address  %></p>
   </div>
 
+  <ul class="list-group mb-4 list-group-flush">
+    <h3>Reviews</h2>
+    <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item list-group-item-action list-group-item-light"><%= review.content %> | Rating: <%= review.rating %></li>
+    <% end %>
+  </ul>
+
+  <%= link_to 'Review', new_restaurant_review_path(@restaurant), class:'btn btn-primary' %> |
   <%= link_to 'Back to restaurants', restaurants_path, class:'btn btn-primary' %>
 </div>
