@@ -21,7 +21,12 @@ class RestaurantsController < ApplicationController
   end
 
   # Show a restaurant
-  def show; end
+  def show
+    unless defined?(@review)
+      @review = Review.new
+      @review.restaurant = @restaurant
+    end
+  end
 
   # Edit restaurants
   def edit; end

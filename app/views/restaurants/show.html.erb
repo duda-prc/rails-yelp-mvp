@@ -1,16 +1,22 @@
 <div class="container mt-4">
   <h1><%= @restaurant.name  %></h1>
 
-  <%= link_to edit_restaurant_path, class:"btn btn-secondary mb-4" do %>
-    <div class="btn btn-secondary d-flex align-items-center p-0">
+  <%# <%= link_to edit_restaurant_path, class:"btn btn-secondary mb-4" do %>
+    <%# <div class="btn btn-secondary d-flex align-items-center p-0">
       <i class="fa-solid fa-pen-to-square"></i>
       <p class="m-0 py-0 px-1">Edit</p>
-    </div>
-  <% end %>
+    </div> %>
+  <%# <% end %>
 
   <div class="card mb-4 p-2">
     <p>Category : <%= @restaurant.category  %></p>
     <p>Address : <%= @restaurant.address  %></p>
+    <p>Phone number: <%= @restaurant.phone_number %></p>
+    <% rating = 0 %>
+    <% @restaurant.reviews.each do |review| %>
+      <% rating += review.rating %>
+    <% end %>
+    <p>Mean rating: <%= rating/(@restaurant.reviews.count) %></p>
   </div>
 
   <ul class="list-group mb-4 list-group-flush">
@@ -20,6 +26,27 @@
     <% end %>
   </ul>
 
-  <%= link_to 'Review', new_restaurant_review_path(@restaurant), class:'btn btn-primary' %> |
-  <%= link_to 'Back to restaurants', restaurants_path, class:'btn btn-primary' %>
+  <hr>
+  <div class="container">
+    <h3>Leave a review!</h3>
+
+    <% unless defined?(@review) %>
+      <% @review = Review.new %>
+      <% @review.restaurant = @restaurant %>
+    <% end %>
+    <%= simple_form_for [ @restaurant, @review ] do |f| %>
+      <%= f.input :content %>
+      <%= f.input :rating, collection: 1..5 %>
+      <%= f.submit class:'btn btn-primary' %>
+    <% end %>
+  </div>
+
+  <hr>
+  <%= link_to restaurants_path, class:"btn btn-primary p-0 mt-4" do %>
+    <div class="btn btn-primary d-flex align-items-center">
+      <i class="fa-solid fa-rotate-left"></i>
+      <p class="m-0 py-0 px-1">Back to restaurants</p>
+    </div>
+  <% end %>
+
 </div>

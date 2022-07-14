@@ -1,5 +1,10 @@
 <div class="container">
   <h1>Edit <%= @restaurant.name %></h1>
   <%= render "form", restaurant: @restaurant %>
-  <%= link_to 'Back', restaurant_path(@restaurant), class:'btn btn-primary mt-4' %>
+  <%= link_to restaurant_path(@restaurant), class:"btn btn-primary p-0 mt-4" do %>
+    <div class="btn btn-primary d-flex align-items-center">
+      <i class="fa-solid fa-rotate-left"></i>
+      <p class="m-0 py-0 px-1">Back</p>
+    </div>
+  <% end %>
 </div>
