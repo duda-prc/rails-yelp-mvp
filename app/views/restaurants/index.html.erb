@@ -1,9 +1,9 @@
-<div class="container mt-4">
-  <h1>Restaurants</h1>
+<div class="container my-4">
+  <h1 class="pt-8">Restaurants</h1>
   <div class="card w-50 mb-4 p-2 text-secondary">
     <p>A fine list of the <em>best places</em> you will find in town!</p>
-    <i class="fa-solid fa-utensils text-center"></i>
   </div>
+
 
   <div class="w-50">
     <ul class="list-group list-group-flush">
@@ -13,15 +13,15 @@
             <%# <%= link_to restaurant_path(restaurant),
                 method: :delete,
                 data: { confirm: "Are you sure?" } do %>
-              <%# <i class="fa-regular fa-trash-can btn"></i> %>
-            <%# <% end %>
+            <%# <i class="fa-regular fa-trash-can btn"></i> %>
+          <%# <% end %>
         </li>
       <% end %>
     </ul>
     <hr>
   </div>
 
-  <%= link_to new_restaurant_path, class:"btn btn-primary" do %>
+  <%= link_to new_restaurant_path, class:"btn btn-primary p-0 mt-4" do %>
     <div class="btn btn-primary d-flex align-items-center">
       <i class="fa-solid fa-plus"></i>
       <p class="m-0 py-0 px-1">Create a restaurant</p>

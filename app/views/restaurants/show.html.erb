@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container my-4">
   <h1><%= @restaurant.name  %></h1>
 
   <%# <%= link_to edit_restaurant_path, class:"btn btn-secondary mb-4" do %>
@@ -16,24 +16,24 @@
     <% @restaurant.reviews.each do |review| %>
       <% rating += review.rating %>
     <% end %>
-    <p>Mean rating: <%= rating/(@restaurant.reviews.count) %></p>
+    <% if @restaurant.reviews.count != 0 %>
+      <% mean_rating = rating/(@restaurant.reviews.count) %>
+    <% else %>
+      <% mean_rating = 0 %>
+    <% end %>
+    <p>Mean rating: <%= mean_rating %> <%= '⭐' * mean_rating %></p>
   </div>
 
   <ul class="list-group mb-4 list-group-flush">
     <h3>Reviews</h2>
     <% @restaurant.reviews.each do |review| %>
-      <li class="list-group-item list-group-item-action list-group-item-light"><%= review.content %> | Rating: <%= review.rating %></li>
+      <li class="list-group-item list-group-item-action list-group-item-light"><%= review.content %> | Rating: <%= review.rating %> <%= '⭐' * review.rating %></li>
     <% end %>
   </ul>
 
   <hr>
   <div class="container">
     <h3>Leave a review!</h3>
-
-    <% unless defined?(@review) %>
-      <% @review = Review.new %>
-      <% @review.restaurant = @restaurant %>
-    <% end %>
     <%= simple_form_for [ @restaurant, @review ] do |f| %>
       <%= f.input :content %>
       <%= f.input :rating, collection: 1..5 %>
